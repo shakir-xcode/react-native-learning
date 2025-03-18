@@ -4,6 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { Appearance } from "react-native";
 import { Colors } from "@/constants/Colors";
+import { ThemeProvider } from "@/context/ThemeCon";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -27,39 +28,41 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: { backgroundColor: theme.headerBackground },
-        headerTintColor: theme.text,
-        headerShadowVisible: false,
-      }}
-    >
-      <Stack.Screen
-        name="index"
-        options={{ title: "Home", headerShown: false }}
-      />
-      <Stack.Screen
-        name="cards"
-        options={{
-          title: "Cards",
-          headerTitle: "Cards Page",
-          headerShown: true,
+    <ThemeProvider>
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: theme.headerBackground },
+          headerTintColor: theme.text,
+          headerShadowVisible: false,
         }}
-      />
-      <Stack.Screen
-        name="flatListExample"
-        options={{ title: "Flat List", headerShown: true }}
-      />
-      <Stack.Screen
-        name="rnLayout"
-        options={{ title: "Layout", headerShown: true }}
-      />
+      >
+        <Stack.Screen
+          name="index"
+          options={{ title: "Home", headerShown: false }}
+        />
+        <Stack.Screen
+          name="cards"
+          options={{
+            title: "Cards",
+            headerTitle: "Cards Page",
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="flatListExample"
+          options={{ title: "Flat List", headerShown: true }}
+        />
+        <Stack.Screen
+          name="rnLayout"
+          options={{ title: "Layout", headerShown: true }}
+        />
 
-      <Stack.Screen
-        name="contact"
-        options={{ title: "Contact Us", headerShown: true }}
-      />
-      <Stack.Screen name="+not-found" />
-    </Stack>
+        <Stack.Screen
+          name="contact"
+          options={{ title: "Contact Us", headerShown: true }}
+        />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+    </ThemeProvider>
   );
 }
